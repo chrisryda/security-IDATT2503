@@ -1,1 +1,14 @@
 /abobe-pb-server
+
+/ex4/.vscode/
+/ex4/1/task1
+/ex4/1/task1_output.txt
+/ex4/1/task1.o
+/ex4/2/task2
+/ex4/2/task2a
+/ex4/2/task2b
+/ex4/3/a_function.o
+/ex4/3/more_functions.o
+/ex4/3/libfunctions.so
+ex4/3/c_example
+
