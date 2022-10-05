@@ -23,14 +23,14 @@ jobs:
         platform: x64
 
     - name: Configure CMake
-      working-directory: ${{github.workspace}}/5/
+      working-directory: ${{github.workspace}}/ex5/
       run: cmake -B ./build
 
     - name: Build
       # Build your program with the given configuration
-      working-directory: ${{github.workspace}}/5/
+      working-directory: ${{github.workspace}}/ex5/
       run: cmake --build ./build
 
-    - name: Fuzzy Test
-      working-directory: ${{github.workspace}}/5/build
+    - name: Fuzzing Test
+      working-directory: ${{github.workspace}}/ex5/build
       run: ./utility_fuzzer_test -max_total_time=60
