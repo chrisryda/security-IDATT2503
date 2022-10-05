@@ -10,5 +10,7 @@
 /ex4/3/a_function.o
 /ex4/3/more_functions.o
 /ex4/3/libfunctions.so
-ex4/3/c_example
+/ex4/3/c_example
 
+/ex5/build/
+/ex5/main
