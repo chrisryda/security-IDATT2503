@@ -30,18 +30,17 @@ std::string pbkdf2(const std::string &password, const std::string &salt) {
 std::string brute_force(const std::string &hash, const std::string &salt, int max_length, int current_length, std::string attempt) {
 	
 	// ASCII A-Za-z, assumes password contains only letters  
-	for (unsigned char c = 65; c < 123; ++c)
-	{
+	for (unsigned char c = 65; c < 123; ++c) {
 		attempt[current_length - 1] = c;
-		if (current_length < max_length)
-		{
+		if (current_length < max_length) {
 			std::string res = brute_force(hash, salt, max_length, current_length + 1, attempt);
-			if (res != "") {
+			
+			//Needed to break recursion
+			if (!res.empty()) {
 				return res;
 			}
-		}
-		else
-		{
+		} 
+		else {
 			std::cout << attempt << std::endl;
 			if (hex(pbkdf2(attempt, salt)) == hash) {
 				return attempt;
@@ -51,29 +50,26 @@ std::string brute_force(const std::string &hash, const std::string &salt, int ma
 	return "";
 }
 
-std::string find_password(const std::string &hash, const std::string &salt, int max_length)
-{
+std::string find_password(const std::string &hash, const std::string &salt, int max_length) {
 	std::string attempt;
-	for (int i = 1; i <= max_length; ++i)
-	{ 
+	for (int i = 1; i <= max_length; ++i) { 
 		attempt = "";
 		attempt.resize(i);
 
 		std::string res = brute_force(hash, salt, i, 1, attempt);
-		if (res != "") {
+		if (!res.empty()) {
 			return res;
 		}
 	}
 	return "";
 }
 
-int main()
-{
+int main() {
 	const std::string hash = "ab29d7b5c589e18b52261ecba1d3a7e7cbf212c6";
 	const std::string salt = "Saltet til Ola";
 	
-	std::string res = find_password(hash, salt, 5);
-	std::cout << std::endl << "The password is: " << std::endl << res << std::endl;
+	std::string password = find_password(hash, salt, 10);
+	std::cout << "The password is: " << password << std::endl;
 
 	return 0;
 }
