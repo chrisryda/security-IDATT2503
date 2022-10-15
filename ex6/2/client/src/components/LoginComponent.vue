@@ -1,5 +1,4 @@
 <template>
-  <!-- v-if="!(this.$store.state.loginStatus == 'Success')" -->
   <div id="loginContainer">
     <div id="loginTitle">
       <label>Please login!</label>
@@ -8,7 +7,6 @@
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <input data-testid="usernameTextArea" v-model="username" />
-      <!-- <textarea data-testid="usernameTextArea" v-model="username"></textarea> -->
     </div>
 
     <div id="password">
@@ -18,16 +16,31 @@
         data-testid="passwordTextArea"
         v-model="password"
       />
-      <!-- <textarea type="password" data-testid="passwordTextArea" v-model="password"></textarea> -->
+    </div>
 
+    <div id="loginButton">
       <button v-on:click="handleClickSignin">Sign in</button>
-      <label id="loginstatusLabel">{{ loginStatus }}</label>
+    </div>
+
+    <div id="loginDisplay">
+      <label id="loginStatusLabel">{{ loginStatus }}</label>
     </div>
   </div>
 </template>
 
 <script>
-// import { doLogin } from '@/utils/apiutils.js'
+import { doLogin } from "@/utils/apiutils.js";
+
+const CryptoJS = require("crypto-js");
+const SALT_CONST = "supersecretsalt"; //Unsecure salt, only used to save time on this exercise
+const KEY_SIZE = 32;
+const ITERATIONS = 2048;
+
+const hashPassword = (pass) =>
+  CryptoJS.PBKDF2(pass, SALT_CONST, {
+    keySize: KEY_SIZE,
+    iterations: ITERATIONS,
+  }).toString();
 
 export default {
   name: "LoginComponent",
@@ -40,20 +53,16 @@ export default {
   },
   methods: {
     async handleClickSignin() {
-      console.log("Ye");
-      // const loginRequest = {
-      //     username: this.username,
-      //     password: this.password
-      // };
-      // await this.$store.dispatch('setUsername', this.username)
-      // await this.$store.dispatch('setPassword', this.password)
+      const loginRequest = {
+        userName: this.username,
+        password: hashPassword(this.password),
+      };
 
-      // const loginResponse = doLogin(loginRequest);
-      // loginResponse.then((resolvedResult) => {
-      //     this.loginStatus = resolvedResult.loginStatus;
-      //     alert("Login: " + resolvedResult.loginStatus);
-      //     this.$store.dispatch('setLoginStatus', this.loginStatus);
-      // });
+      const loginResponse = doLogin(loginRequest);
+      loginResponse.then((result) => {
+        this.loginStatus = result;
+        alert(result);
+      });
     },
   },
 };
@@ -82,13 +91,16 @@ export default {
   column-gap: 10px;
 }
 
+#loginButton {
+  padding-top: 30px;
+}
+
 #usernameLabel,
 #passwordLabel {
   width: 100px;
 }
 
-#loggedInView {
-  text-align: center;
-  margin-top: 30px;
+#loginDisplay {
+  padding-top: 10px;
 }
 </style>
