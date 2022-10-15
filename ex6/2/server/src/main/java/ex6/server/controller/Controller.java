@@ -44,6 +44,6 @@ public class Controller {
         }
 
         LOGGER.error("Login of user " + user.getUserName() + " failed: invalid username or password");
-        return "Login failed: Invalid username or password";
+        return "Login failed: invalid username or password";
     }
 }
