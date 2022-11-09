@@ -34,7 +34,7 @@ def square_and_multiply(x: int, y: int, n: int):
             z = (z * x) % n
     return z
 
-print("b)\nKriterier for valg av p og q:\nJeg valgte 16-bit p og q, passet på at (p -1) og (q-1) ikke bare hadde lave faktorer, og valgte to verdier\njeg håper ikke er for nærme hverandre, samt tilfeldige nok")
+print("b)\nKriterier for valg av p og q:\nJeg valgte 16-bit p og q, passet på at (p-1) og (q-1) ikke bare hadde lave faktorer, og valgte to verdier\njeg håper ikke er for nærme hverandre, samt tilfeldige nok")
 
 print(f"\nc)\nOffentlig nøkkel: (n = {N}, e = {E})")
 
