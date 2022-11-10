@@ -17,4 +17,4 @@ msg_recieved = 0b0111
 hmac_recieved = 0b0100
 res2 = hmac(K, msg_recieved)
 print(f"\nTask b:\nRecieved HMAC: {bin(hmac_recieved)}\nCalculated HMAC: {res2}")
-print("\nHMAC er riktig, så meldingen kan være autentisk. Mtp at vi har blokklengde 4 er det\nogså mulighet for kollisjon i hashfunksjonen vår, så helt sikre kan vi ikke være.")
+print("\nHMAC er riktig, så meldingen kan være autentisk. Mtp at vi har blokklengde 4 er det\nmulighet for kollisjon i hashfunksjonen vår, f.eks. kan meldingen ha vært 0110.")
