@@ -43,6 +43,6 @@ print(f"\nd)\nPrivat nøkkel: (p, q) = ({P}, {Q}), d = {D}")
 
 msg = 12345
 c = e(msg, E, N)
-print(f"\nd)\nE({msg}) -> {c}")
+print(f"\ne)\nE({msg}) -> {c}")
 m = d(c, D, N)
 print(f"D({c}) -> {m}")
