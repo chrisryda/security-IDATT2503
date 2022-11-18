@@ -68,4 +68,4 @@ print(f"Order of each element in z_star_11: {task_b(z_star_11, 11)}")
 print("Fermat's little theorem, which says the order of all elements shoulde divide (11-1), is confirmed on line 14")
 
 print("\nTask c:")
-task_c(7)
+task_c(11)
