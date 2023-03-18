@@ -57,7 +57,7 @@ def get_row(row_num, n):
     return str
 
 print("Task a:")
-x, i = task_a(11)
+x, i = task_a(10)
 print(f"x^i = 1 when x = {x} and i = {i}")
 
 print("\nTask b:")
